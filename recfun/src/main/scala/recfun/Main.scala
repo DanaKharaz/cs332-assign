@@ -1,4 +1,5 @@
 package recfun
+
 import common._
 
 object Main {
@@ -14,7 +15,11 @@ object Main {
   /**
    * Exercise 1
    */
-  def pascal(c: Int, r: Int): Int = ???
+  def pascal(c: Int, r: Int): Int = {
+    assert(r >= 0 && c >= 0 && c <= r, s"invalid coordinates ($c, $r)")
+    if (c == 0 || c == r) 1                       // edges
+    else pascal(c - 1, r - 1) + pascal(c, r - 1)
+  }
 
   /**
    * Exercise 2
