@@ -160,4 +160,16 @@ class FunSetSuite extends AnyFunSuite {
       assert(!exists(s, p3), "Exists negative") // condition holds for no elts
     }
   }
+
+  test("map increment") {
+    new TestSets {
+      val sOrig = union(union(s1, s2), s3) // {1, 2, 3}
+      val f = (n: Int) => n + 1 // increment by 1
+      val s = map(sOrig, f) // {2, 3, 4}
+      printSet(s)
+      assert(!contains(s, 1), "Map 1")
+      assert(contains(s, 2), "Map 2")
+      assert(contains(s, 3), "Map 3")
+    }
+  }
 }
