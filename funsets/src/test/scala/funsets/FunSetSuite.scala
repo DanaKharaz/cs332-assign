@@ -113,18 +113,29 @@ class FunSetSuite extends AnyFunSuite {
   test("intersect contains common elements") {
     new TestSets {
       val s = intersect(union(s1, s2), union(s2, s3))
-      assert(!contains(s, 1), "Union 1")
-      assert(contains(s, 2), "Union 2")
-      assert(!contains(s, 3), "Union 3")
+      assert(!contains(s, 1), "Intersect 1")
+      assert(contains(s, 2), "Intersect 2")
+      assert(!contains(s, 3), "Intersect 3")
     }
   }
 
   test("diff contains non-common elements") {
     new TestSets {
       val s = diff(union(s1, s2), union(s2, s3))
-      assert(contains(s, 1), "Union 1")
-      assert(!contains(s, 2), "Union 2")
-      assert(!contains(s, 3), "Union 3")
+      assert(contains(s, 1), "Diff 1")
+      assert(!contains(s, 2), "Diff 2")
+      assert(!contains(s, 3), "Diff 3")
+    }
+  }
+
+  test("filter contains odd numbers") {
+    new TestSets {
+      val sOrig = union(union(s1, s2), s3) // {1, 2, 3}
+      val p = (n: Int) => n % 2 == 1
+      val s = filter(sOrig, p)
+      assert(contains(s, 1), "Filter 1")
+      assert(!contains(s, 2), "Filter 2")
+      assert(contains(s, 3), "Filter 3")
     }
   }
 }
