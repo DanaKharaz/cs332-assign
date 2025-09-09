@@ -118,4 +118,13 @@ class FunSetSuite extends AnyFunSuite {
       assert(!contains(s, 3), "Union 3")
     }
   }
+
+  test("diff contains non-common elements") {
+    new TestSets {
+      val s = diff(union(s1, s2), union(s2, s3))
+      assert(contains(s, 1), "Union 1")
+      assert(!contains(s, 2), "Union 2")
+      assert(!contains(s, 3), "Union 3")
+    }
+  }
 }
