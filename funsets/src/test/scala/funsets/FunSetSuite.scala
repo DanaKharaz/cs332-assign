@@ -1,9 +1,9 @@
 package funsets
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
 import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+import org.scalatestplus.junit.JUnitRunner
 
 /**
  * This class is a test suite for the methods in object FunSets. To run
@@ -12,7 +12,7 @@ import org.scalatest.junit.JUnitRunner
  *  - right-click the file in eclipse and chose "Run As" - "JUnit Test"
  */
 @RunWith(classOf[JUnitRunner])
-class FunSetSuite extends FunSuite {
+class FunSetSuite extends AnyFunSuite {
 
 
   /**
@@ -86,7 +86,7 @@ class FunSetSuite extends FunSuite {
    * Once you finish your implementation of "singletonSet", exchange the
    * function "ignore" by "test".
    */
-  ignore("singletonSet(1) contains 1") {
+  test("singletonSet(1) contains 1") {
     
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -101,10 +101,19 @@ class FunSetSuite extends FunSuite {
     }
   }
 
-  ignore("union contains all elements") {
+  test("union contains all elements") {
     new TestSets {
       val s = union(s1, s2)
       assert(contains(s, 1), "Union 1")
+      assert(contains(s, 2), "Union 2")
+      assert(!contains(s, 3), "Union 3")
+    }
+  }
+
+  test("intersect contains common elements") {
+    new TestSets {
+      val s = intersect(union(s1, s2), union(s2, s3))
+      assert(!contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
     }
