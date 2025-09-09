@@ -138,4 +138,14 @@ class FunSetSuite extends AnyFunSuite {
       assert(contains(s, 3), "Filter 3")
     }
   }
+
+  test("forall on small sets") {
+    new TestSets {
+      val s = union(union(s1, s2), s3) // {1, 2, 3}
+      val p1 = (n: Int) => n % 2 == 1 // odd
+      val p2 = (n: Int) => n > 0 // positive
+      assert(!forall(s, p1), "Forall odd")
+      assert(forall(s, p2), "Forall positive")
+    }
+  }
 }

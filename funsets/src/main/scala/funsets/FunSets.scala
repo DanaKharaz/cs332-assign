@@ -2,6 +2,8 @@ package funsets
 
 import common._
 
+import scala.annotation.tailrec
+
 /**
  * 2. Purely Functional Sets.
  */
@@ -54,12 +56,13 @@ object FunSets {
    * Returns whether all bounded integers within `s` satisfy `p`.
    */
   def forall(s: Set, p: Int => Boolean): Boolean = {
+    @tailrec
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (a > bound) true // iteration done
+      else if (s(a) && !p(a)) false // an elt of s does not satisfy p
+      else iter(a + 1)
     }
-    iter(???)
+    iter(-bound)
   }
 
   /**
