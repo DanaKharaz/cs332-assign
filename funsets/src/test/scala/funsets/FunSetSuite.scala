@@ -148,4 +148,16 @@ class FunSetSuite extends AnyFunSuite {
       assert(forall(s, p2), "Forall positive")
     }
   }
+
+  test("exists on small sets") {
+    new TestSets {
+      val s = union(union(s1, s2), s3) // {1, 2, 3}
+      val p1 = (n: Int) => n % 2 == 1 // odd
+      val p2 = (n: Int) => n % 2 == 0 // even
+      val p3 = (n: Int) => n < 0 // negative
+      assert(exists(s, p1), "Exists odd") // condition holds for more than 1 elt
+      assert(exists(s, p2), "Exists even") // condition holds for exactly 1 elt
+      assert(!exists(s, p3), "Exists negative") // condition holds for no elts
+    }
+  }
 }
