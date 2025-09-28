@@ -1,10 +1,8 @@
 package patmat
 
 import org.scalatest.FunSuite
-
 import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
-
 import patmat.Huffman._
 
 @RunWith(classOf[JUnitRunner])
@@ -23,6 +21,12 @@ class HuffmanSuite extends FunSuite {
   test("chars of a larger tree") {
     new TestTrees {
       assert(chars(t2) === List('a','b','d'))
+    }
+  }
+
+  test("chars of a single leaf tree") {
+    new TestTrees {
+      assert(chars(Leaf('a',1)) === List('a'))
     }
   }
 
